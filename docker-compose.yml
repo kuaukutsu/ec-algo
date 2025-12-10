@@ -1,0 +1,31 @@
+x-default-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "5m"
+    max-file: "3"
+
+x-service-volume: &service-volume
+  - type: bind
+    source: ./src
+    target: /src
+  - type: bind
+    source: ./benchmark
+    target: /benchmark
+  - type: bind
+    source: ./vendor
+    target: /vendor
+
+name: algo
+services:
+  cli:
+    container_name: algo_cli
+    build:
+      context: .docker/php/cli
+      target: app_devel
+      args:
+        UID: ${USER:-1} # ID:1 daemon, support: linux, mac
+        WORKDIR: "/src"
+    env_file:
+      - .docker/base.env
+    volumes: *service-volume
+    logging: *default-logging
