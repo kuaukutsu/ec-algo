@@ -21,15 +21,12 @@ echo "Нужно найти пересечение двух отсортиров
 $arr1 = get_list_number(0, 10);
 $arr2 = get_list_number(1, 12);
 echo sprintf(
-    "list one: [%s]\nlist two: [%s]",
+        "list one: [%s]\n"
+        . "list two: [%s]\n"
+        . "direct intersection: [%s]\n"
+        . "reverse intersection: [%s]",
         implode(', ', $arr1),
-        implode(', ', $arr2)
-    ) . PHP_EOL;
-
-$listDirect = list_intersection_direct($arr1, $arr2);
-$listReverse = list_intersection_reverse($arr1, $arr2);
-echo sprintf(
-        "list intersection direct: [%s]\nlist intersection reverse: [%s]",
-        implode(', ', $listDirect),
-        implode(', ', $listReverse)
+        implode(', ', $arr2),
+        implode(', ', list_intersection_direct($arr1, $arr2)),
+        implode(', ', list_intersection_reverse($arr1, $arr2))
     ) . PHP_EOL . PHP_EOL;

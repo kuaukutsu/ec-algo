@@ -10,3 +10,11 @@
 - [ ] Бинарный поиск
 - [ ] Префиксные суммы
 - [ ] Плавающие окна 
+
+### Example
+
+#### Two pointers
+
+```shell
+make two-pointers 
+```
