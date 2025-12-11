@@ -14,7 +14,7 @@ use function kuaukutsu\ec\algo\TwoPointers\remove_duplicates_with_copy;
 
 #[Revs(1000)]
 #[Iterations(10)]
-#[Groups(['duplicates'])]
+#[Groups(['duplicates', 'two-pointers'])]
 final class TwoPointersRemoveDuplicatesBench
 {
     private array $number;

@@ -14,7 +14,7 @@ use function kuaukutsu\ec\algo\TwoPointers\get_list_number;
 
 #[Revs(1000)]
 #[Iterations(10)]
-#[Groups(['sum'])]
+#[Groups(['sum', 'two-pointers'])]
 final class TwoPointersSumBench
 {
     private array $nums;

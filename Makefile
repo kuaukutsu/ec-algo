@@ -36,6 +36,12 @@ bench: ##
 		-e XDEBUG_MODE=off \
 		cli ./vendor/bin/phpbench run ./benchmark --report=aggregate --config=/benchmark/phpbench.json
 
+bench-two-pointers: ##
+	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
+		-e XDEBUG_MODE=off \
+		cli ./vendor/bin/phpbench run ./benchmark \
+		--group=two-pointers --report=aggregate --config=/benchmark/phpbench.json
+
 app:
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w /src cli sh
 

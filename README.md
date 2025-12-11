@@ -18,3 +18,7 @@
 ```shell
 make two-pointers 
 ```
+
+```shell
+make bench-two-pointers
+```

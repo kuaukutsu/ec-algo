@@ -14,7 +14,7 @@ use function kuaukutsu\ec\algo\TwoPointers\list_intersection_reverse;
 
 #[Revs(1000)]
 #[Iterations(10)]
-#[Groups(['intersection'])]
+#[Groups(['intersection', 'two-pointers'])]
 final class TwoPointersIntersectionBench
 {
     private array $listFirst;
