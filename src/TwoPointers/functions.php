@@ -168,8 +168,12 @@ function get_indexes_by_sum(array $list, int $sum): array
  * @param ?non-negative-int $pointerRight
  * @return array<non-negative-int, non-negative-int>
  */
-function get_indexes_by_sum_recursive(array $list, int $target, ?int $pointerLeft = null, ?int $pointerRight = null): array
-{
+function get_indexes_by_sum_recursive(
+    array $list,
+    int $target,
+    ?int $pointerLeft = null,
+    ?int $pointerRight = null
+): array {
     $pointerLeft ??= 0;
     $pointerRight ??= count($list) - 1;
 
