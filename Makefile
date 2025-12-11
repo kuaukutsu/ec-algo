@@ -1,6 +1,14 @@
 PHP_VERSION ?= 8.1
 USER = $$(id -u)
 
+# https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
+.PHONY: help
+.DEFAULT_GOAL := help
+
+help: ## Display this help screen
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+
 composer: ## composer install
 	docker run --init -it --rm -u ${USER} -v "$$(pwd):/app" -w /app \
 		composer:latest \
@@ -16,11 +24,6 @@ composer-dump: ## composer dump-autoload
 		composer:latest \
 		composer dump-autoload
 
-psalm: ## psalm
-	docker run --init -it --rm -u ${USER} -v "$$(pwd):/app" -w /app \
-		ghcr.io/kuaukutsu/php:${PHP_VERSION}-cli \
-		./vendor/bin/psalm --php-version=${PHP_VERSION} --no-cache
-
 phpstan: ## phpstan
 	docker run --init -it --rm -u ${USER} -v "$$(pwd):/app" -w /app \
 		ghcr.io/kuaukutsu/php:${PHP_VERSION}-cli \
@@ -31,24 +34,24 @@ rector: ## rector
 		ghcr.io/kuaukutsu/php:${PHP_VERSION}-cli \
 		./vendor/bin/rector
 
-bench: ##
+bench: ## phpbench all groups
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
 		-e XDEBUG_MODE=off \
 		cli ./vendor/bin/phpbench run ./benchmark --report=aggregate --config=/benchmark/phpbench.json
 
-bench-two-pointers: ##
+bench-two-pointers: ## phpbench two-pointers group
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
 		-e XDEBUG_MODE=off \
 		cli ./vendor/bin/phpbench run ./benchmark \
 		--group=two-pointers --report=aggregate --config=/benchmark/phpbench.json
 
-app:
-	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w /src cli sh
-
-two-pointers:
+two-pointers: ## run script two-pointers pattern
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
     		-e XDEBUG_MODE=off \
     		cli php /src/TwoPointers/index.php
+
+app:
+	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w /src cli sh
 
 build:
 	USER=$(USER) docker compose -f ./docker-compose.yml build cli
