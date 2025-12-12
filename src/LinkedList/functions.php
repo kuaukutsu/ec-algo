@@ -100,14 +100,14 @@ function list_merge_recursive(Node $listLeft, Node $listRight, ?Node $root = nul
     if ($listLeft->getValue() <= $listRight->getValue()) {
         $root->next = $listLeft;
         if ($listLeft->next instanceof Node) {
-            list_merge_recursive($listLeft->next, $listRight, $listLeft);
+            list_merge_recursive($listLeft->next, $listRight, $root->next);
         } else {
             $root->next->next = $listRight;
         }
     } else {
         $root->next = $listRight;
         if ($listRight->next instanceof Node) {
-            list_merge_recursive($listLeft, $listRight->next, $listRight);
+            list_merge_recursive($listLeft, $listRight->next, $root->next);
         } else {
             $root->next->next = $listLeft;
         }

@@ -15,7 +15,7 @@ use function kuaukutsu\ec\algo\LinkedList\list_reverse_recursive;
 
 #[Revs(1000)]
 #[Iterations(10)]
-#[Groups(['reverse', 'linked-list2'])]
+#[Groups(['reverse', 'linked-list'])]
 final class LinkedListReverseBench
 {
     private Node $list;
