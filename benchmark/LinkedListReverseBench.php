@@ -10,6 +10,7 @@ use PhpBench\Attributes\Revs;
 use kuaukutsu\ec\algo\LinkedList\Node;
 
 use function kuaukutsu\ec\algo\LinkedList\generate;
+use function kuaukutsu\ec\algo\LinkedList\list_reverse;
 use function kuaukutsu\ec\algo\LinkedList\list_reverse_from_array;
 use function kuaukutsu\ec\algo\LinkedList\list_reverse_recursive;
 
@@ -23,6 +24,11 @@ final class LinkedListReverseBench
     public function __construct()
     {
         $this->list = generate(1, 1000);
+    }
+
+    public function benchAsWhile(): int
+    {
+        return list_reverse($this->list)->getValue();
     }
 
     public function benchAsArray(): int
