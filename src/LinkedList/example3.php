@@ -24,9 +24,11 @@ echo sprintf(
         "List Left: %s\n"
         . "List Right: %s\n"
         . "Merge (while): %s\n"
-        . "Merge (recursive): %s",
+        . "Merge (recursive): %s\n"
+        . "Merge (equal): %s",
         $listLeft,
         $listRight,
         list_merge(clone $listLeft, clone $listRight),
-        list_merge_recursive(clone $listLeft, clone $listRight)
+        list_merge_recursive(clone $listLeft, clone $listRight),
+        list_merge(clone $listLeft, clone $listLeft),
     ) . PHP_EOL . PHP_EOL;
