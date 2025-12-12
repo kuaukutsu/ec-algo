@@ -56,21 +56,46 @@ function generate_from_array(array $list, int $pointer = 0, ?Node $node = null):
     return $node;
 }
 
-function list_reverse_recursive(Node $node, ?Node $tail = null): Node
+function list_reverse(Node $list): Node
 {
-    $next = $node->next;
-    $node->next = $tail;
-    if ($next instanceof Node) {
-        return list_reverse_recursive($next, $node);
+    $next = $list->next;
+    if ($next === null) {
+        return $list;
+    }
+
+    $node = $list;
+    $node->next = null;
+
+    $tail = $node;
+    while ($next instanceof Node) {
+        // pointer next
+        $nodeNext = $next->next;
+        // write
+        $node = $next;
+        $node->next = $tail;
+        // moving
+        $tail = $node;
+        $next = $nodeNext;
     }
 
     return $node;
 }
 
-function list_reverse_from_array(Node $node): Node
+function list_reverse_recursive(Node $list, ?Node $tail = null): Node
+{
+    $next = $list->next;
+    $list->next = $tail;
+    if ($next instanceof Node) {
+        return list_reverse_recursive($next, $list);
+    }
+
+    return $list;
+}
+
+function list_reverse_from_array(Node $list): Node
 {
     return generate_from_array(
-        array_reverse($node->toArray())
+        array_reverse($list->toArray())
     );
 }
 
