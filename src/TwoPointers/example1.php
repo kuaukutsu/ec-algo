@@ -18,8 +18,8 @@ require dirname(__DIR__) . '/bootstrap.php';
 
 echo "Нужно найти пересечение двух отсортированных по возрастанию массива целых чисел." . PHP_EOL;
 
-$arr1 = get_list_number(0, 10);
-$arr2 = get_list_number(1, 12);
+$arr1 = generate(0, 10);
+$arr2 = generate(1, 12);
 echo sprintf(
         "list one: [%s]\n"
         . "list two: [%s]\n"

@@ -8,7 +8,7 @@ use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\Revs;
 
-use function kuaukutsu\ec\algo\TwoPointers\get_list_number;
+use function kuaukutsu\ec\algo\TwoPointers\generate;
 use function kuaukutsu\ec\algo\TwoPointers\remove_duplicates;
 use function kuaukutsu\ec\algo\TwoPointers\remove_duplicates_with_copy;
 
@@ -21,7 +21,7 @@ final class TwoPointersRemoveDuplicatesBench
 
     public function __construct()
     {
-        $this->number = get_list_number(0, 1000);
+        $this->number = generate(0, 1000);
     }
 
     public function benchAsWhile(): int

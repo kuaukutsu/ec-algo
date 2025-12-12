@@ -5,20 +5,34 @@
 ### План
 
 - [x] Два указателя
-- [ ] Хеш-таблицы
-- [ ] Связнные списки
-- [ ] Бинарный поиск
+- [x] Связнные списки
 - [ ] Префиксные суммы
 - [ ] Плавающие окна 
+- [ ] Хеш-таблицы
+- [ ] Бинарный поиск
 
 ### Example
+
+```shell
+make phpstan
+```
 
 #### Two pointers
 
 ```shell
-make two-pointers 
+make run-two-pointers 
 ```
 
 ```shell
 make bench-two-pointers
+```
+
+#### Linked list
+
+```shell
+make run-linked-list 
+```
+
+```shell
+make bench-linked-list
 ```
