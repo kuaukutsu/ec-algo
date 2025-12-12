@@ -21,6 +21,7 @@
       "kuaukutsu\\ec\\algo\\": "src"
     },
     "files": [
+      "src/LinkedList/functions.php",
       "src/TwoPointers/functions.php"
     ]
   },

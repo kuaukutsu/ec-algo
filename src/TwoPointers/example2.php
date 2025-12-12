@@ -15,7 +15,7 @@ require dirname(__DIR__) . '/bootstrap.php';
 
 echo "Необходимо удалить все повторяющиеся элементы." . PHP_EOL;
 
-$nums = get_list_number(1, 10);
+$nums = generate(1, 10);
 echo sprintf(
         "nums: [%s]\n"
         . "check inner func: [%s]\n"

@@ -11,7 +11,7 @@ use Throwable;
  * @param positive-int $size
  * @return non-empty-list<non-negative-int>
  */
-function get_list_number(int $numStart, int $size): array
+function generate(int $numStart, int $size): array
 {
     $list = [];
     while ($size > 0) {

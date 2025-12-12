@@ -8,7 +8,7 @@ use PhpBench\Attributes\Groups;
 use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\Revs;
 
-use function kuaukutsu\ec\algo\TwoPointers\get_list_number;
+use function kuaukutsu\ec\algo\TwoPointers\generate;
 use function kuaukutsu\ec\algo\TwoPointers\list_intersection_direct;
 use function kuaukutsu\ec\algo\TwoPointers\list_intersection_reverse;
 
@@ -23,8 +23,8 @@ final class TwoPointersIntersectionBench
 
     public function __construct()
     {
-        $this->listFirst = get_list_number(0, 1000);
-        $this->listSecond = get_list_number(0, 1000);
+        $this->listFirst = generate(0, 1000);
+        $this->listSecond = generate(0, 1000);
     }
 
     public function benchAsDirect(): int

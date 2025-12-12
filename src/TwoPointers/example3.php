@@ -15,7 +15,7 @@ require dirname(__DIR__) . '/bootstrap.php';
 
 echo "Найти индексы двух чисел, сумма которых равна target." . PHP_EOL;
 
-$nums = get_list_number(1, 15);
+$nums = generate(1, 15);
 [$targetPointLeft, $targetPointRight] = array_rand($nums, 2);
 /** @var positive-int $targetSum */
 $targetSum = $nums[$targetPointLeft] + $nums[$targetPointRight];

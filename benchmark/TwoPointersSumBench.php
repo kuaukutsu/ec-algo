@@ -10,7 +10,7 @@ use PhpBench\Attributes\Revs;
 
 use function kuaukutsu\ec\algo\TwoPointers\get_indexes_by_sum;
 use function kuaukutsu\ec\algo\TwoPointers\get_indexes_by_sum_recursive;
-use function kuaukutsu\ec\algo\TwoPointers\get_list_number;
+use function kuaukutsu\ec\algo\TwoPointers\generate;
 
 #[Revs(1000)]
 #[Iterations(10)]
@@ -23,7 +23,7 @@ final class TwoPointersSumBench
 
     public function __construct()
     {
-        $this->nums = get_list_number(0, 1000);
+        $this->nums = generate(0, 1000);
 
         [$targetPointLeft, $targetPointRight] = array_rand($this->nums, 2);
         $this->target = $this->nums[$targetPointLeft] + $this->nums[$targetPointRight];
