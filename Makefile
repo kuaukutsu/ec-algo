@@ -61,6 +61,11 @@ run-linked-list: ## run script "linked list"
     		-e XDEBUG_MODE=off \
     		cli php /src/LinkedList/index.php
 
+run-sliding-window: ## run script "sliding window"
+	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
+    		-e XDEBUG_MODE=off \
+    		cli php /src/SlidingWindow/index.php
+
 app:
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w /src cli sh
 

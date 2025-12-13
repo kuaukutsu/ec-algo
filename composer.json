@@ -22,6 +22,7 @@
     },
     "files": [
       "src/LinkedList/functions.php",
+      "src/SlidingWindow/functions.php",
       "src/TwoPointers/functions.php"
     ]
   },

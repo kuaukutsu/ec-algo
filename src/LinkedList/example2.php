@@ -35,9 +35,11 @@ echo sprintf(
 $list = generate(1, 1);
 echo sprintf(
         "List: %s\n"
+        . "Reverse (while): %s\n"
         . "Reverse (recursive): %s\n"
         . "Reverse (from array): %s",
         $list,
+        list_reverse(clone $list),
         list_reverse_recursive(clone $list),
         list_reverse_from_array(clone $list),
     ) . PHP_EOL . PHP_EOL;
