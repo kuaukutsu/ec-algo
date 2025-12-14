@@ -6,8 +6,8 @@
 
 - [x] Два указателя
 - [x] Связнные списки
+- [x] Плавающее/Скользящее окно 
 - [ ] Префиксные суммы
-- [ ] Плавающие окна 
 - [ ] Хеш-таблицы
 - [ ] Бинарный поиск
 
@@ -35,4 +35,10 @@ make run-linked-list
 
 ```shell
 make bench-linked-list
+```
+
+#### Sliding window
+
+```shell
+make run-sliding-window 
 ```
