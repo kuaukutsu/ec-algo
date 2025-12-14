@@ -24,7 +24,7 @@ echo sprintf(
         . "count (fast): %d\n"
         . "count (verify): %d\n"
         . "slice: [%s]\n"
-        . "slice (fast): [%s]\n",
+        . "slice (fast): [%s]",
         $str,
         count($slice),
         count($sliceFast),
