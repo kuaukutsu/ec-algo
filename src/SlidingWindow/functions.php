@@ -31,6 +31,32 @@ function generate(int $size, int $factor = 1000): array
 }
 
 /**
+ * @param positive-int $length
+ * @return non-empty-string
+ */
+function generate_word(int $length): string
+{
+    $string = '';
+    $num = 0;
+    $words = range('a', 'z');
+    while ($length > 0) {
+        try {
+            $canNewPoint = random_int(0, 3) !== 1;
+            if ($canNewPoint) {
+                $num = random_int(0, 25);
+            }
+        } catch (Throwable) {
+            $num++;
+        }
+
+        $string .= $words[$num];
+        $length--;
+    }
+
+    return $string;
+}
+
+/**
  * @template TValue of int
  * @param non-empty-list<TValue> $list
  * @param positive-int $lengthSlice
@@ -104,4 +130,79 @@ function find_slice_max_length_less_than_sum(array $list, int $limitSum): array
     }
 
     return $windowMax;
+}
+
+/**
+ * @param non-empty-string $str
+ * @return list<non-empty-string>
+ */
+function find_largest_slice_all_characters_unique(string $str): array
+{
+    /**
+     * @param non-empty-array<non-empty-string, mixed> $array
+     * @param non-empty-string $character
+     * @return list<non-empty-string>
+     */
+    $fnSlice = static function (array $array, string $character): array {
+        $list = array_keys($array);
+        $position = array_search($character, $list, true);
+        if ($position !== false) {
+            return array_fill_keys(array_slice($list, $position + 1), 1);
+        }
+
+        return $array;
+    };
+
+    $slice = [];
+    $window = [];
+
+    $len = strlen($str);
+    $pointer = 0;
+    while ($pointer < $len) {
+        $character = $str[$pointer];
+        if (($window[$character] ?? 0) === 1) {
+            $window = $fnSlice($window, $character);
+        }
+
+        $window[$character] = 1;
+        if (count($window) > count($slice)) {
+            /** @var list<non-empty-string> $slice */
+            $slice = array_keys($window);
+        }
+
+        $pointer++;
+    }
+
+    return $slice;
+}
+
+/**
+ * @param non-empty-string $str
+ * @return list<non-empty-string>
+ */
+function find_largest_slice_all_characters_unique_fast(string $str): array
+{
+    $slice = [];
+    $list = str_split($str);
+    $len = count($list);
+    $pointer = 0;
+    $left = 0;
+    $mapCharacter = [];
+    while ($pointer < $len) {
+        $character = $str[$pointer];
+        $position = $mapCharacter[$character] ?? -1;
+        if ($position >= $left) {
+            $left = $position + 1;
+        }
+
+        $window = array_slice($list, $left, ($pointer - $left + 1));
+        if (count($window) > count($slice)) {
+            $slice = $window;
+        }
+
+        $mapCharacter[$character] = $pointer;
+        $pointer++;
+    }
+
+    return $slice;
 }

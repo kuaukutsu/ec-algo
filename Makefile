@@ -45,11 +45,17 @@ bench-two-pointers: ## phpbench two-pointers group
 		cli ./vendor/bin/phpbench run ./benchmark \
 		--group=two-pointers --report=aggregate --config=/benchmark/phpbench.json
 
-bench-linked-list: ## phpbench two-pointers group
+bench-linked-list: ## phpbench linked-list group
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
 		-e XDEBUG_MODE=off \
 		cli ./vendor/bin/phpbench run ./benchmark \
 		--group=linked-list --report=aggregate --config=/benchmark/phpbench.json
+
+bench-sliding-window: ## phpbench sliding-window group
+	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
+		-e XDEBUG_MODE=off \
+		cli ./vendor/bin/phpbench run ./benchmark \
+		--group=sliding-window --report=aggregate --config=/benchmark/phpbench.json
 
 run-two-pointers: ## run script "two pointers"
 	USER=$(USER) docker compose -f ./docker-compose.yml run --rm -u $(USER) -w / \
